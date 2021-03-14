@@ -201,3 +201,50 @@ docker-compose build <service_name>
 ```powershell
 docker-compose up -d --scale app=2
 ```
+
+
+### Administrar ambiente Docker
+```powershell
+docker ps -a   # listar los contenedores
+docker container prune # eliminar los contenedores detenidos
+docker rm -f $(docker ps -aq) # eliminar todos los contenedores
+
+docker network ls
+
+docker image ls
+
+docker system prune # eliminar todo network, volumes and images
+```
+
+```powershell
+docker run -d --name <name> --memory <max_memory> <container> 
+docker stats
+```
+
+#### Detener contenedores correctamente
+
+```powershell
+docker stop <container>
+docker kill <container>
+```
+
+#### Contenedores ejecutables
+
+```docker-compose.yml
+ENTRYPOINT [<command>, <arg1>, <arg2>]
+CMD [<param>]
+```
+
+#### Contexto de build
+`.dockerignore`
+
+#### Multi-stage build
+```powershell
+docker build -t <container> -f <dockerfile> <context>
+```
+
+### Docker-in-Docker
+
+```
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/bin/docker wagoodman/dive:latest <image>
+```
