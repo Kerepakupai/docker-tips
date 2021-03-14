@@ -1,0 +1,10 @@
+version: "3.8"
+
+services: 
+  app:
+    build: <context>
+    environment: 
+      <VAR_NAME>: <VAR_VALUE>
+    volumes: 
+      - <container_path_to_ignore>
+    command: npx nodemon index.js
